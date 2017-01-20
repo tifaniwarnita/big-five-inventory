@@ -43,20 +43,22 @@
           <span class="sr-only">Toggle navigation</span>
           Menu <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="index.html">Home</a>
+            <a href="" lang="en">Home</a>
+            <a href="index.html" lang="id">Beranda</a>
           </li>
           <li>
-            <a href="about.html">About</a>
+            <a href="about.html" lang="en">About</a>
+            <a href="about.html" lang="id">Tentang</a>
           </li>
           <li>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" lang="en">Contact</a>
+            <a href="contact.html" lang="id">Kontak</a>
           </li>
         </ul>
       </div>
@@ -75,7 +77,12 @@
             <div class="header-site">
             <h1>Big Five Inventory</h1>
             <hr class="small">
-            <span class="subheading">A self-report inventory designed to measure the Big Five dimensions</span>
+            <div lang="en">
+              <span class="subheading">A self-report inventory designed to measure the Big Five dimensions</span>
+            </div>
+            <div lang="id">
+              <span class="subheading">Sebuah <i>inventory</i> untuk menghitung dimensi <i>Big Five</i></span>
+            </div>
           </div>
         </div>
       </div>
@@ -148,11 +155,11 @@
                           <td>
                             <span class="disagree" lang="en">Strongly Disagree</span>
                             <span class="disagree" lang="id">Sangat Tidak Setuju</span>
-                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="1" required> 1
-                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="2" required> 2
-                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="3" required> 3
-                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="4" required> 4
-                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="5" required> 5
+                            <input type="radio" name=<?php echo "bfi" . ($i+1); ?> value="1" required> 1
+                            <input type="radio" name=<?php echo "bfi" . ($i+1); ?> value="2" required> 2
+                            <input type="radio" name=<?php echo "bfi" . ($i+1); ?> value="3" required> 3
+                            <input type="radio" name=<?php echo "bfi" . ($i+1); ?> value="4" required> 4
+                            <input type="radio" name=<?php echo "bfi" . ($i+1); ?> value="5" required> 5
                             <span class="agree" lang="en">Strongly Agree</span>
                             <span class="agree" lang="id">Sangat Setuju</span>
                           </td>
@@ -174,34 +181,36 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-sm-2" for="name" lang="en">Name:</label>
-                  <label class="control-label col-sm-2" for="name" lang="id">Nama:</label>
-                  <div class="col-sm-10">
+                  <label class="control-label col-sm-3" for="name" lang="en">Name:</label>
+                  <label class="control-label col-sm-3" for="name" lang="id">Nama:</label>
+                  <div class="col-sm-8">
                     <input type="name" class="form-control" id="name" name="name" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-sm-2" for="name" lang="en">Age:</label>
-                  <label class="control-label col-sm-2" for="name" lang="id">Umur:</label>
+                  <label class="control-label col-sm-3" for="name" lang="en">Age:</label>
+                  <label class="control-label col-sm-3" for="name" lang="id">Umur:</label>
                   <div class="col-sm-3">
                     <input type="number" class="form-control" id="age" name="age" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-sm-2" for="name" lang="en">Gender:</label>
-                  <label class="control-label col-sm-2" for="name" lang="id">Jenis Kelamin:</label>
+                  <label class="control-label col-sm-3" for="name" lang="en">Gender:</label>
+                  <label class="control-label col-sm-3" for="name" lang="id">Jenis Kelamin:</label>
                   <div class="col-sm-3">
-                    <select class="form-control">
-                      <option name="gender" value="male" lang="en" required>Male</option>
-                      <option name="gender" value="male" lang="id" required>Laki-laki</option>
-                      <option name="gender" value="female" lang="en" required>Female</option>
-                      <option name="gender" value="female" lang="id" required>Female</option>
+                    <select class="form-control" lang="en">
+                      <option name="gender" value="male" required>Male</option>
+                      <option name="gender" value="female" required>Female</option>
+                    </select>
+                    <select class="form-control" lang="id">
+                      <option name="gender" value="male" required>Laki-laki</option>
+                      <option name="gender" value="female" required>Female</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-sm-2" for="email">Email:</label>
-                  <div class="col-sm-10">
+                  <label class="control-label col-sm-3" for="email">Email:</label>
+                  <div class="col-sm-8">
                     <input type="email" class="form-control" id="email" name="email" required>
                   </div>
                 </div>
