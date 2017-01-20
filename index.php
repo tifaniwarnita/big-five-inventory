@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -87,48 +87,77 @@
     <div class="row">
       <div>
         <div class="post-preview">
+          <button class="language btn btn-default" onclick="document.body.className='en'">English</button>
+          <button class="language btn btn-default" onclick="document.body.className='id'">Bahasa</button>
+
           <form class="form-horizontal" action="result.php" method="post">
-            <p><strong>Directions:</strong> The following statements concern your perception about yourself in a variety of situations. Your task is to indicate the strength of your agreement with each statement, utilizing a scale in which 1 denotes strong disagreement, 5 denotes strong agreement, and 2, 3, and 4 represent intermediate judgments. In the boxes after each statem</p>
+            <p lang="en"><strong>Directions:</strong> The following statements concern your perception about yourself in a variety of situations. Your task is to indicate the strength of your agreement with each statement, utilizing a scale in which 1 denotes strong disagreement, 5 denotes strong agreement, and 2, 3, and 4 represent intermediate judgments. In the boxes after each statement, click a number from 1 to 5 from the following scale:</p>
+            <p lang="id"><strong>Petunjuk:</strong> Berikut adalah daftar pernyataan berdasarkan persepsi Anda terhadap beragam situasi. Tugas Anda adalah untuk menilai seberapa anda setuju dengan setiap pernyataan yang ada menggunakan skala 1 yang merepresentasikan sangat tidak setuju sampai 5 yang merepresentasikan sangat setuju atas pernyataan yang diberikan. Pada setiap pernyataan yang ada, pilih <i>box</i> yang bersesuaian dengan skala:</p>
 
             <ol>
-              <li>Strongly disagree</li>
-              <li>Disagree</li>
-              <li>Neither disagree nor agree</li>
-              <li>Agree</li>
-              <li>Strongly agree</li>
+              <li lang="en">Strongly disagree</li>
+              <li lang="id">Sangat tidak setuju</li>
+              <li lang="en">Disagree</li>
+              <li lang="id">Tidak setuju</li>
+              <li lang="en">Neither disagree nor agree</li>
+              <li lang="id">Tidak keduanya</li>
+              <li lang="en">Agree</li>
+              <li lang="id">Setuju</li>
+              <li lang="en">Strongly agree</li>
+              <li lang="id">Sangat setuju</li>
             </ol>
 
-            <p>There are no "right" or "wrong" answers, so select the number that most closely reflects you on each statement. Take your time and consider each statement carefully. Once you have completed all questions click "Submit" at the bottom.</p>
-            <h2 class="post-subtitle">
+            <p lang="en">There are no "right" or "wrong" answers, so select the number that most closely reflects you on each statement. Take your time and consider each statement carefully. Once you have completed all questions, fill all the personal information then click "Submit" at the bottom.</p>
+            <p lang="id">Tidak ada jawaban yang "benar" maupun "salah" sehingga pilihlah angka yang paling cocok dengan persepsi Anda untuk setiap pernyataan yang diberikan. Silakan pikirkan jawaban Anda dengan baik. Setelah selesai menjawab semua pertanyaan, isi informasi data pribadi yang disediakan lalu pilih "Kirim".</p>
+            <h2 class="post-subtitle" lang="en">
               I see myself as someone who...
+            </h2>
+            <h2 class="post-subtitle" lang="id">
+              Saya melihat diri saya sebagai orang yang...
             </h2>
             <p class="post-meta"></p>
             <table class="table form-style">
               <tbody>
                   <?php
-                    $handle = fopen("data/question.txt", "r");
+                    $question_en = array();
+                    $question_id = array();
+                    $handle = fopen("data/question-en.txt", "r");
                     if ($handle) {
-                      $i = 1;
                       while (($line = fgets($handle)) !== false) {
-                  ?>
-                        <tr>
-                          <td>...<?php echo $line; ?></td>
-                          <td>
-                            <span class="disagree">Strongly Disagree</span>
-                            <input type="radio" name=<?php echo "bfi" . $i; ?> value="1" required> 1
-                            <input type="radio" name=<?php echo "bfi" . $i; ?> value="2" required> 2
-                            <input type="radio" name=<?php echo "bfi" . $i; ?> value="3" required> 3
-                            <input type="radio" name=<?php echo "bfi" . $i; ?> value="4" required> 4
-                            <input type="radio" name=<?php echo "bfi" . $i; ?> value="5" required> 5
-                            <span class="agree">Strongly Agree</span>
-                          </td>
-                        </tr>
-                  <?php
-                        $i++;
+                        array_push($question_en, $line);
                       }
                       fclose($handle);
                     } else {
                       echo "Error opening file";
+                    }
+                    $handle = fopen("data/question-id.txt", "r");
+                    if ($handle) {
+                      $i = 1;
+                      while (($line = fgets($handle)) !== false) {
+                        array_push($question_id, $line);
+                      }
+                      fclose($handle);
+                    } else {
+                      echo "Error opening file";
+                    }
+                    for($i=0; $i<sizeof($question_en); $i++) {
+                  ?>
+                        <tr>
+                          <td lang="en"><?php echo $i+1 . ". <u>____</u>" . $question_en[$i]; ?></td>
+                          <td lang="id"><?php echo $i+1 . ". <u>____</u>" . $question_id[$i]; ?></td>
+                          <td>
+                            <span class="disagree" lang="en">Strongly Disagree</span>
+                            <span class="disagree" lang="id">Sangat Tidak Setuju</span>
+                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="1" required> 1
+                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="2" required> 2
+                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="3" required> 3
+                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="4" required> 4
+                            <input type="radio" name=<?php echo "bfi" . $i+1; ?> value="5" required> 5
+                            <span class="agree" lang="en">Strongly Agree</span>
+                            <span class="agree" lang="id">Sangat Setuju</span>
+                          </td>
+                        </tr>
+                  <?php
                     } 
                   ?>
               </tbody>
@@ -136,22 +165,39 @@
 
             <hr>
 
-            <h2 class="post-title">
+            <h2 class="post-title" lang="en">
               Personal Information
+            </h2>
+            <h2 class="post-title" lang="id">
+              Data Pribadi
             </h2>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-sm-2" for="name">Name:</label>
+                  <label class="control-label col-sm-2" for="name" lang="en">Name:</label>
+                  <label class="control-label col-sm-2" for="name" lang="id">Nama:</label>
                   <div class="col-sm-10">
                     <input type="name" class="form-control" id="name" name="name" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-sm-2" for="age">Age:</label>
-                    <div class="col-sm-3">
-                      <input type="number" class="form-control" id="age" name="age" required>
-                    </div>
+                  <label class="control-label col-sm-2" for="name" lang="en">Age:</label>
+                  <label class="control-label col-sm-2" for="name" lang="id">Umur:</label>
+                  <div class="col-sm-3">
+                    <input type="number" class="form-control" id="age" name="age" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="name" lang="en">Gender:</label>
+                  <label class="control-label col-sm-2" for="name" lang="id">Jenis Kelamin:</label>
+                  <div class="col-sm-3">
+                    <select class="form-control">
+                      <option name="gender" value="male" lang="en" required>Male</option>
+                      <option name="gender" value="male" lang="id" required>Laki-laki</option>
+                      <option name="gender" value="female" lang="en" required>Female</option>
+                      <option name="gender" value="female" lang="id" required>Female</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-2" for="email">Email:</label>
@@ -161,7 +207,8 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-default button-submit">Submit</button>
+            <button type="submit" class="btn btn-default button-submit" lang="en">Submit</button>
+            <button type="submit" class="btn btn-default button-submit" lang="id">Kirim</button>
           </form>
         </div>
       </div>
@@ -206,6 +253,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Etc -->
+  <script>document.body.className='en';</script>
 
   <!-- jQuery -->
   <script src="vendor/jquery/jquery.min.js"></script>

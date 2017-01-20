@@ -14,20 +14,6 @@ body {
 	margin-left: 25px;
 }
 
-table {
-    counter-reset: rowNumber;
-}
-
-table tr {
-    counter-increment: rowNumber;
-}
-
-table tr td:first-child::before {
-    content: counter(rowNumber) ".";
-    min-width: 1em;
-    margin-right: 0.5em;
-}
-
 .post-title {
 	margin-top: 70px;
 	margin-bottom: 30px;
@@ -35,4 +21,19 @@ table tr td:first-child::before {
 
 .button-submit {
 	margin-top: 30px;
+}
+
+body.en :lang(id) {
+	display: none;
+}
+body.id :lang(en) {
+	display: none;
+}
+
+.language {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 1px;
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

@@ -117,7 +117,7 @@
   	$line = array(
   		$id,
   		$_POST["age"],
-  		'gender', // TODO
+  		$_POST["gender"],
   		(int) (extraversion()*100/5),
   		(int) (agreeableness()*100/5),
   		(int) (conscientiousness()*100/5),
