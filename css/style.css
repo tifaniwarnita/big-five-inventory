@@ -1,0 +1,38 @@
+input[type=radio] {
+	margin-left: 20px;
+}
+
+body {
+	font-size: 16px;
+}
+
+.disagree {
+	margin-right: 5px;
+}
+
+.agree {
+	margin-left: 25px;
+}
+
+table {
+    counter-reset: rowNumber;
+}
+
+table tr {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber) ".";
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+.post-title {
+	margin-top: 70px;
+	margin-bottom: 30px;
+}
+
+.button-submit {
+	margin-top: 30px;
+}
